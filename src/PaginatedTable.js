@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 
 const PaginatedTable = ({thead, tbody, className}) => {
 
-    console.log(className);
-
     const [visibleRows, setVisibleRows] = useState([]);
     
     const [page, setPage] = useState({current: 0, items: 10, max: Math.round(tbody.length/10)});
