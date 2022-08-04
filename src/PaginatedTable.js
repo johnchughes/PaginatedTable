@@ -7,11 +7,16 @@ const PaginatedTable = ({thead, tbody, className}) => {
     const [page, setPage] = useState({current: 0, items: 10, max: Math.round(tbody.length/10)});
 
     useEffect(() => {
+        const max = Math.round(tbody.length/page.items);
+        setPage({...page, current:0, max: max});
+    }, [tbody]);
+
+    useEffect(() => {
         const start = page.current * page.items;
         const end = start + page.items;
         const currentRows = tbody.slice(start, end);
         setVisibleRows(currentRows);
-    }, [page, tbody]);
+    }, [page]);
 
     const onPreviousClicked = (e) => {
         if(page.current > 0) {
